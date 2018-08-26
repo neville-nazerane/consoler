@@ -10,7 +10,7 @@ namespace Consoler
         public virtual string Command { get; }
         public virtual string Description { get; set; }
 
-        public AbstractConsoleCommand Parent { get; set; }
+        public AbstractConsoleCommand Parent { get; internal set; }
 
         public AbstractConsoleCommand(string Command)
         {

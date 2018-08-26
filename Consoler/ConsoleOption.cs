@@ -7,11 +7,6 @@ namespace Consoler
     public class ConsoleOption
     {
 
-        public ConsoleOption()
-        {
-
-        }
-
         public ConsoleOption(string name, string description = null, string value = null)
         {
             Name = name;

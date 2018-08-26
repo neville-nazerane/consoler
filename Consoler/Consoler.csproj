@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Consoler</PackageId>
+    <Version>1.0.1</Version>
     <Description>Helps create command line tools with commands managed in a tree based structure.</Description>
+    <PackageReleaseNotes>
+      - Added property restrictions
+    </PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/neville-nazerane/consoler</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>

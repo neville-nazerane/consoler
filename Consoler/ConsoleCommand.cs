@@ -6,8 +6,8 @@ namespace Consoler
     public class ConsoleCommand : AbstractConsoleCommand
     {
 
-        public ConsoleOption[] Options { get; protected set; }
-        public ConsoleOption[] OptionalOptions { get; protected set; }
+        public ConsoleOption[] Options { get; set; }
+        public ConsoleOption[] OptionalOptions { get; set; }
         public IEnumerable<BasicConsoleFlag> Flags => _flags;
 
         public Action OnRun { get; set; }
