@@ -11,6 +11,7 @@ namespace Tester
         string _Description;
         readonly ConsoleOption PackageName;
         readonly ConsoleOption MakeWith;
+        readonly ConsoleOption Opto;
 
         public override string Description {
             get
@@ -35,11 +36,17 @@ namespace Tester
                 MakeWith = new ConsoleOption("make with")
             };
 
+            OptionalOptions = new ConsoleOption[] {
+                Opto = new ConsoleOption("Optional tester")
+            };
+
         }
 
         public override void Run()
         {
-            Console.WriteLine("You have created a package with name " + PackageName.Value);
+            Console.WriteLine($"You have created a package with name {PackageName.Value} made with {MakeWith.Value}");
+            if (Opto.Value != null)
+                Console.WriteLine($"you bothered to use the optional {Opto.Value}!!!");
         }
 
     }

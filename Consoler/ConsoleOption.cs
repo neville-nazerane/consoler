@@ -20,5 +20,7 @@ namespace Consoler
 
         public string Value { get; set; }
 
+        public static implicit operator string(ConsoleOption option) => option.Value;
+
     }
 }
