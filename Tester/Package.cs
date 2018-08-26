@@ -32,7 +32,7 @@ namespace Tester
 
             Options = new ConsoleOption[] {
                 PackageName = new ConsoleOption("package name", "Name of the nuget package"),
-                MakeWith = new ConsoleOption()
+                MakeWith = new ConsoleOption("make with")
             };
 
         }

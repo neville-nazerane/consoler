@@ -12,10 +12,10 @@ namespace Tester
             string command = "new mvc -o hello";
             command = "build -c release";
 
-            var _new = new LinkedConsoleCommand("new")
+            var _new = new LinkingConsoleCommand("new")
                             .AddCommands(new Mvc(), new ConsoleLib());
 
-            var _add = new LinkedConsoleCommand("add")
+            var _add = new LinkingConsoleCommand("add")
                             {
                                 Description = "Add something new"
                             }
