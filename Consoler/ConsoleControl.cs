@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Consoler
 {
@@ -30,7 +31,34 @@ namespace Consoler
         public void AddCommand(params AbstractConsoleCommand[] command) 
             => _commands.AddRange(command);
 
+        /// <summary>
+        /// Runs the async function followed by the synchronous Run() function
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public async Task<bool> ComputeAsync(string[] args)
+        {
+            var cmd = ComputeInner(args);
+            if (cmd == null) return false;
+            await cmd.RunAsync();
+            cmd.Run();
+            return true;
+        }
+
+        /// <summary>
+        /// Runs only the synchronous Run() function
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public bool Compute(string[] args)
+        {
+            var cmd = ComputeInner(args);
+            if (cmd == null) return false;
+            cmd.Run();
+            return true;
+        }
+
+        ConsoleCommand ComputeInner(string[] args)
         {
             if (args?.Count() > 0)
             {
@@ -70,7 +98,7 @@ namespace Consoler
                                                     .Union(ending.OptionalOptions.Select(o => $"[{o.Name}]"))
                                                 ));
                                     Console.ForegroundColor = foreGround;
-                                    return false;
+                                    return null;
                                 }
                                 opt.Value = args[i++];
                             }
@@ -83,8 +111,8 @@ namespace Consoler
                                 opt.Value = args[i++];
                             }
                         }
-                        if (!ComputeFlags(ending.Flags, args, i)) return false;
-                        ending.Run();
+                        if (!ComputeFlags(ending.Flags, args, i)) return null;
+                        return ending;
                     }
                     else
                     {
@@ -95,7 +123,7 @@ namespace Consoler
                             PrintCommands(linked.Children, $"Valid commands for '{linked.Command}' are: ");
                         else PrintCommands(_commands);
                         Console.ForegroundColor = foreGround;
-                        return false;
+                        return null;
                     }
                 }
             }
@@ -113,10 +141,9 @@ namespace Consoler
                         if (c.Description != null)
                             Console.WriteLine($"{c.Command}: {c.Description}");
                 }
-
                 Console.ForegroundColor = foreGround;
             }
-            return true;
+            return null;
         }
 
         void PrintCommands(IEnumerable<AbstractConsoleCommand> commands, string preText = "Valid commands are: ")

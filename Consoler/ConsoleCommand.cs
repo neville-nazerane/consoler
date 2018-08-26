@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Consoler
 {
@@ -11,6 +12,7 @@ namespace Consoler
         public IEnumerable<BasicConsoleFlag> Flags => _flags;
 
         public Action OnRun { get; set; }
+        public Func<Task> OnRunAsync { get; set; }
 
         readonly List<BasicConsoleFlag> _flags;
 
@@ -25,10 +27,9 @@ namespace Consoler
             return this;
         }
 
-        public virtual void Run()
-        {
-            OnRun();
-        }
+        public virtual void Run() => OnRun();
+
+        public virtual async Task RunAsync() => await OnRunAsync();
 
     }
 }
