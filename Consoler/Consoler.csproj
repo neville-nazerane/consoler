@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Consoler</PackageId>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Description>Helps create command line tools with commands managed in a tree based structure.</Description>
     <PackageReleaseNotes>
-      - added async functionality
+      - bug fix: null pointer when OnRun not set
     </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/neville-nazerane/consoler</PackageProjectUrl>
   </PropertyGroup>

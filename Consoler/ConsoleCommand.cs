@@ -27,9 +27,9 @@ namespace Consoler
             return this;
         }
 
-        public virtual void Run() => OnRun();
+        public virtual void Run() => OnRun?.Invoke();
 
-        public virtual async Task RunAsync() => await OnRunAsync();
+        public virtual async Task RunAsync() => await OnRunAsync?.Invoke();
 
     }
 }
